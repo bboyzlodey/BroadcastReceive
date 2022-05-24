@@ -1,0 +1,25 @@
+#!/bin/bash
+
+ADB_VERSION=$(adb --version)
+ADB_RESULT=$?
+if [ $ADB_RESULT -ne 0 ]; then
+	echo "adb not found"
+	exit -1
+fi
+
+
+USAGE="./sendPrimitive action_name extra_key extra_value"
+
+if [ $# -ne 3 ]; then
+	echo "USAGE:"
+	echo "    $USAGE"
+	exit -1
+fi
+
+
+ACTION_NAME=$1
+EXTRA_KEY=$2
+EXTRA_VALUE=$3
+
+adb shell am broadcast -a $ACTION_NAME -e $EXTRA_KEY $EXTRA_VALUE
+
