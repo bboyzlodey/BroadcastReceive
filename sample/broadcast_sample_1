@@ -1,0 +1,2 @@
+#!/bin/bash
+../script/sendString DEFAULT_ACTION DEFAULT_EXTRA_KEY Banny

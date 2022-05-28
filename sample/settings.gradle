@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Broadcast Sample"
 include ':app'
 include ':broadcast'
+project(':broadcast').setProjectDir(file('../lib/broadcast'))

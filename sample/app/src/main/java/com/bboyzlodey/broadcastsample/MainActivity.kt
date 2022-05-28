@@ -8,9 +8,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.bboyzlodey.broadcast.onBroadcastReceiveString
 import com.bboyzlodey.broadcastsample.ui.theme.BroadcastSampleTheme
+import kotlinx.coroutines.flow.MutableSharedFlow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +26,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    val greetingText by broadcastSample_1().collectAsState(initial = "Android")
+                    Greeting(greetingText)
                 }
             }
         }
@@ -40,4 +45,12 @@ fun DefaultPreview() {
     BroadcastSampleTheme {
         Greeting("Android")
     }
+}
+
+private fun MainActivity.broadcastSample_1(): kotlinx.coroutines.flow.Flow<String> {
+    val sharedFlow = MutableSharedFlow<String>(replay = 0, extraBufferCapacity = 1)
+    onBroadcastReceiveString {
+        sharedFlow.tryEmit(it)
+    }
+    return sharedFlow
 }
