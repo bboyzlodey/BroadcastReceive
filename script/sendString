@@ -8,7 +8,7 @@ if [ $ADB_RESULT -ne 0 ]; then
 fi
 
 
-USAGE="./sendPrimitive action_name extra_key extra_value"
+USAGE="./sendString action_name extra_key extra_value"
 
 if [ $# -ne 3 ]; then
 	echo "USAGE:"
