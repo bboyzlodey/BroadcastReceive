@@ -30,6 +30,8 @@ private fun debugReceivingName(context: Context) : Flow<String> {
 ## Caution :warning:
 **Don't use in production!** This tool can be applied for debuging and developing android application. All extensions call `registerBroadcastReceiver()`, but **not call** `unregisterBroadcastReceiver()` method! Care about your users in production.
 
+## Setup
+Today, you can add dependency of library only localy (clone and setup as local module). See [sample](https://github.com/bboyzlodey/BroadcastReceive/tree/main/sample)
 ## TODO:
 - [ ] Add lifecycle for unregistering receiver
 - [ ] Support multiple devices
